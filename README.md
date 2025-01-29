@@ -24,12 +24,19 @@ services → Contains the business logic and interacts with repositories for dat
 
 utils → Contains helper methods, error classes, etc.
  
-Setup the project
+### Setup the project 
+
 Download this template from GitHub and open it in your favorite text editor.
+then execute npm install
+
 In the root directory, create a .env file and add the following env variables:
-    PORT=<port number of your choice>
+    PORT=<port number of your choice> 
 
     Inside the src/config folder, create a file named config.json and write the following code:
+
+    go inside src and execute following commands : npx sequelize init 
+    u will this kind of code in config.json file after the execution :
+
     {
   "development": {
     "username": "root",
@@ -56,3 +63,6 @@ In the root directory, create a .env file and add the following env variables:
 
 - If you're setting up your development environment, then write the username of your db, password of your db and in dialect mention whatever db you are using for ex: mysql, mariadb etc
 - If you're setting up test or prod environment, make sure you also replace the host with the hosted db url.
+
+to run the server execute the command:
+npm run dev
