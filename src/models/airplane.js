@@ -21,7 +21,7 @@ module.exports = (sequelize, DataTypes) => {
     capacity: {
       type: DataTypes.INTEGER,
       defaultValue: 0,
-      valdate: {
+      validate: {
         max: 1000,
       }
     }    
