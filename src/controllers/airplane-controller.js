@@ -10,7 +10,7 @@ async function createAirplane(req, res) {
             modelNumber: req.body.modelNumber,
             capacity: req.body.capacity,
         });
-        SuccessResponse.data = AirplaneService;
+        SuccessResponse.data = airplane;
         return res.status(StatusCodes.CREATED).json(SuccessResponse);
     } catch (error) {
         ErrorResponse.error = error;
