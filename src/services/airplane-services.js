@@ -1,6 +1,6 @@
 const { AirplaneRepository } = require('../repositories');
 const AppError = require('../utils/error/app-error');
-const { StatusCodes } = require('http-status-codes')
+const { StatusCodes } = require('http-status-codes');
 
 const airplaneRepository = new AirplaneRepository();
 
@@ -28,7 +28,7 @@ async function getAirplanes() {
         const airplanes = await airplaneRepository.getAll();
         return airplanes;
     } catch (error) {
-        throw new Error('Cannot fetch data of all airplanes', StatusCodes.INTERNAL_SERVER_ERROR);
+        throw new AppError('Cannot fetch data of all airplanes', StatusCodes.INTERNAL_SERVER_ERROR);
     }
 }
 
@@ -38,14 +38,27 @@ async function getAirplane(id) {
         return airplanes;
     } catch (error) {
         if(error.statusCodes == StatusCodes.NOT_FOUND) {
-            throw new Error('The Airplane u have requested is not present now', error.statusCodes);
+            throw new AppError('The Airplane u have requested is not present now', error.statusCodes);
         }
-        throw new Error('Cannot fetch data of all airplanes', StatusCodes.INTERNAL_SERVER_ERROR);
+        throw new AppError('Cannot fetch data of all airplanes', StatusCodes.INTERNAL_SERVER_ERROR);
+    }
+}
+
+async function destroyAirplane(id) {
+    try {
+        const airplanes = await airplaneRepository.destroy(id);
+        return airplanes;
+    } catch (error) {
+        if(error.statusCodes == StatusCodes.NOT_FOUND) {
+            throw new AppError('The Airplane u have requested to delete is not present now', error.statusCodes);
+        }
+        throw new AppError('Cannot fetch data of all airplanes', StatusCodes.INTERNAL_SERVER_ERROR);
     }
 }
 
 module.exports = {
     createAirplane,
     getAirplanes,
-    getAirplane
+    getAirplane,
+    destroyAirplane
 }
