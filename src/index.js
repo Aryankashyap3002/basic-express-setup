@@ -13,7 +13,5 @@ app.use('/api', apiRoutes);
 
 app.listen(serverConfig.PORT, async () => {
     console.log('Successfully started the server port:', serverConfig.PORT);
-    const { Airport, City } = require('./models');
-    const city = await City.findByPk(1);
-    const esponse =  await city.createAirport({name: 'Kempegowda', code: 'BLR'});
+   
 })
